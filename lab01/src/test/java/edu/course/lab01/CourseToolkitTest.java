@@ -2,9 +2,7 @@ package edu.course.lab01;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CourseToolkitTest {
 
@@ -82,4 +80,30 @@ class CourseToolkitTest {
     void isPalindromeTreatsSpacesAsSignificant() {
         assertFalse(CourseToolkit.isPalindrome("a b a "));
     }
- }
+ 
+    @Test
+    void averageReturnsFractionalResult() {
+        assertEquals(2.5, CourseToolkit.average(new int[]{1, 2, 3, 4}), 0.0001);
+    }
+
+    @Test
+    void averageHandlesNegativeValues() {
+        assertEquals(-2.0, CourseToolkit.average(new int[]{-1, -2, -3}), 0.0001);
+    }
+
+    @Test
+    void averageThrowsForNullOrEmpty() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.average(null));
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.average(new int[]{}));
+    }
+
+    @Test
+    void averageDoesNotModifyInputArray() {
+        int[] input = {1, 2, 3};
+        int[] copy = input.clone();
+        CourseToolkit.average(input);
+        assertArrayEquals(copy, input);
+    }
+}
