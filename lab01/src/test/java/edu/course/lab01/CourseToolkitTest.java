@@ -106,4 +106,26 @@ class CourseToolkitTest {
         CourseToolkit.average(input);
         assertArrayEquals(copy, input);
     }
-}
+    @Test
+    void minReturnsSmallestValue() {
+        assertEquals(-5, CourseToolkit.min(new int[]{3, -5, 7, 0}));
+    }
+
+    @Test
+    void maxReturnsLargestValue() {
+        assertEquals(7, CourseToolkit.max(new int[]{3, -5, 7, 0}));
+    }
+
+    @Test
+    void minAndMaxThrowForNullOrEmpty() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.min(null));
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.min(new int[]{}));
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.max(null));
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.max(new int[]{}));
+    }
+    }
+
