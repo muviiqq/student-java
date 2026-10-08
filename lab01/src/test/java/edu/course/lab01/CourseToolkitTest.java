@@ -3,6 +3,7 @@ package edu.course.lab01;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CourseToolkitTest {
@@ -60,4 +61,25 @@ class CourseToolkitTest {
         assertFalse(CourseToolkit.isPrime(49));  // 7 * 7
         assertFalse(CourseToolkit.isPrime(121)); // 11 * 11
     }
+    
+        @Test
+    void isPalindromeReturnsTrueForSimplePalindrome() {
+        assertTrue(CourseToolkit.isPalindrome("level"));
     }
+
+    @Test
+    void isPalindromeIsCaseSensitive() {
+        assertFalse(CourseToolkit.isPalindrome("Level"));
+    }
+
+    @Test
+    void isPalindromeThrowsForNull() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.isPalindrome(null));
+    }
+
+    @Test
+    void isPalindromeTreatsSpacesAsSignificant() {
+        assertFalse(CourseToolkit.isPalindrome("a b a "));
+    }
+ }
