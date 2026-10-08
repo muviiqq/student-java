@@ -25,4 +25,39 @@ class CourseToolkitTest {
     void returnsTrueForNegativeEvenNumber() {
         assertTrue(CourseToolkit.isEven(-8));
     }
-}
+
+    public static boolean isPrime(int number) {
+        if (number < 2) {
+            return false;
+        }
+        for (int divisor = 2; divisor * divisor <= number; divisor++) {
+            if (number % divisor == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    @Test
+    void isPrimeReturnsFalseForNumbersLessThanTwo() {
+        assertFalse(CourseToolkit.isPrime(-5));
+        assertFalse(CourseToolkit.isPrime(0));
+        assertFalse(CourseToolkit.isPrime(1));
+    }
+
+    @Test
+    void isPrimeReturnsTrueForTwo() {
+        assertTrue(CourseToolkit.isPrime(2));
+    }
+
+    @Test
+    void isPrimeReturnsFalseForComposite() {
+        assertFalse(CourseToolkit.isPrime(15));
+    }
+
+    @Test
+    void isPrimeReturnsFalseForSquareOfPrime() {
+        assertFalse(CourseToolkit.isPrime(49));  // 7 * 7
+        assertFalse(CourseToolkit.isPrime(121)); // 11 * 11
+    }
+    }
